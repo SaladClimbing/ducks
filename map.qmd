@@ -1,0 +1,32 @@
+---
+Title: "Mallard Duck Map"
+Author: "Andrew Lucas"
+format: html
+execute:
+  echo: false
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+
+mallards_sf <- readRDS("data/mallards.rds") |>
+  filter(lat >= 46, lat <= 55, long >= 7, long <= 25) |>
+  st_as_sf(coords = c("long", "lat"), crs = 4326)
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+ggplot() +
+  geom_sf(data = world, fill = "lightgray", color = "white") +
+  geom_sf(data = mallards_sf, aes(color = duck_id), size = 0.3, alpha = 0.6) +
+  coord_sf(xlim = c(7, 25), ylim = c(46, 55), expand = FALSE) +
+  theme_minimal() +
+  labs(
+    title = "Mallard GPS fixes",
+    x = "Longitude",
+    y = "Latitude",
+    color = "Duck"
+  )
+```
