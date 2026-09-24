@@ -19,14 +19,25 @@ mallards_sf <- readRDS("data/mallards.rds") |>
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
 ggplot() +
-  geom_sf(data = world, fill = "lightgray", color = "white") +
-  geom_sf(data = mallards_sf, aes(color = duck_id), size = 0.3, alpha = 0.6) +
+  geom_sf(data = world, fill = "#d9d9d9", color = "#6c757d", linewidth = 0.2) +
+  geom_sf(
+    data = mallards_sf,
+    aes(color = duck_id),
+    size = 0.25,
+    alpha = 0.65,
+    show.legend = FALSE
+  ) +
+  scale_color_viridis_d(option = "plasma", end = 0.9) +
   coord_sf(xlim = c(7, 25), ylim = c(46, 55), expand = FALSE) +
-  theme_minimal() +
+  theme_minimal(base_size = 12) +
   labs(
     title = "Mallard GPS fixes",
     x = "Longitude",
     y = "Latitude",
     color = "Duck"
+  ) +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold")
   )
 ```

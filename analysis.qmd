@@ -6,6 +6,16 @@ execute:
   echo: false
 ---
 
+Mallard ducks are a widespread species of dabbling duck found across Europe, Asia, and North America. They are highly adaptable birds that often live near wetlands, lakes, and rivers, and they are well known for their ability to move between feeding, resting, and breeding areas as conditions change.
+
+Lake Constance is a large freshwater lake on the border of Germany, Switzerland, and Austria. It is an important stopover and wintering area for migratory waterfowl, making it an ideal place to study how birds use space and respond to seasonal changes in their environment.
+
+The GPS tracking data used here records the movements of individual mallards across a broad region. By examining where the birds travel, how fast they move, and how their activity changes across the year, we can learn more about migration patterns, habitat use, and the timing of seasonal movements.
+
+<div style="display: flex; justify-content: center;">
+  <img src="images/mallard.jpg" style="height: 300px; width: auto;"/>
+</div>
+
 ```{r}
 #| message: false
 library(tidyverse)
