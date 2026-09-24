@@ -1,0 +1,28 @@
+---
+Title: "Mallard Speed by Month"
+Author: "Andrew Lucas"
+format: html
+execute:
+  echo: false
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(ggridges)
+
+mallards <- readRDS("data/mallards.rds") |>
+  filter(!is.na(speed), speed > 0) |>
+  mutate(month = factor(month, levels = month.name, ordered = TRUE))
+
+ggplot(mallards, aes(x = speed, y = month, fill = season)) +
+  geom_density_ridges(scale = 1.5, alpha = 0.85) +
+  scale_fill_viridis_d(option = "C") +
+  labs(
+    title = "Mallard speed distributions by month",
+    x = "Speed (m/s)",
+    y = "Month",
+    fill = "Season"
+  ) +
+  theme_minimal()
+```
